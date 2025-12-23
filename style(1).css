@@ -1,0 +1,93 @@
+/* Reset & Body */
+* { margin:0; padding:0; box-sizing:border-box; font-family:system-ui,sans-serif;}
+body {height:100vh; background:black; overflow:hidden;}
+
+/* Stars */
+.stars {
+  position: fixed; inset:0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, white, transparent),
+    radial-gradient(1px 1px at 30% 80%, white, transparent),
+    radial-gradient(1px 1px at 50% 50%, white, transparent),
+    radial-gradient(1px 1px at 70% 10%, white, transparent),
+    radial-gradient(1px 1px at 90% 90%, white, transparent);
+  background-size: 200px 200px;
+  animation: stars-move 30s linear infinite;
+  opacity: 0.6;
+}
+.stars:nth-child(2){opacity:.4;animation-duration:40s}
+.stars:nth-child(3){opacity:.25;animation-duration:55s}
+@keyframes stars-move {from {background-position:100% -100%;} to {background-position:-100% 100%;}}
+
+/* Center */
+.center {position: relative; z-index:2; height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px; transition: opacity .6s ease, transform .6s ease;}
+.center.fade-all {opacity:0; transform: scale(0.96); pointer-events:none;}
+
+/* Blue Logo */
+.title-img {width:120px; height:120px; border-radius:28px;}
+
+/* Action Container */
+.action-container {display:flex; flex-direction:column; align-items:center; gap:18px;}
+.start-wrapper {display:flex; align-items:center; gap:16px; position:relative;}
+
+/* Start Button */
+.start-btn {
+  padding:20px 52px; font-size:24px; font-weight:800; border-radius:16px; border:none;
+  cursor:pointer; color:#052e16; background-size:300% 100%;
+  background-image: linear-gradient(110deg,#22c55e,#4ade80,#16a34a,#86efac,#22c55e);
+  animation: green-shine 2.5s linear infinite; box-shadow:0 0 35px rgba(34,197,94,0.9);
+  transition: all .6s ease;
+}
+.start-btn:hover {transform: translateY(-4px) scale(1.05);}
+.start-btn.fade-out {opacity:0; transform: scale(0.8); pointer-events:none;}
+
+/* Icons */
+.games-icon, .logos .logo, .stats-icon {
+  width:60px; height:60px; border-radius:14px; cursor:pointer;
+  box-shadow:0 0 16px rgba(34,197,94,0.7);
+  transition: transform .3s ease, box-shadow .3s ease, opacity .5s ease;
+}
+.games-icon:hover, .logos .logo:hover, .stats-icon:hover {
+  transform: scale(1.1);
+  box-shadow:0 0 26px rgba(34,197,94,0.9);
+}
+.games-icon.fade-out {opacity:0; pointer-events:none;}
+.stats-icon.fade-out {opacity:0; pointer-events:none;}
+
+/* Logos */
+.logos {display:flex; gap:26px; opacity:0; transform: translateY(30px); transition: transform .8s ease, opacity .8s ease; position: relative;}
+.logos.show {opacity:1; transform: translateY(0);}
+.logo, .stats-icon {width:70px; height:70px; border-radius:16px; animation: glow-pulse 2.8s ease-in-out infinite;}
+
+/* Top Tabs */
+.top-tabs {position:fixed; top:32px; left:50%; transform:translateX(-50%) translateY(-10px); display:flex; align-items:center; gap:14px; opacity:0; pointer-events:none; transition: opacity .5s ease, transform .5s ease; z-index:5;}
+.top-tabs.show {opacity:1; pointer-events:auto; transform:translateX(-50%) translateY(0);}
+.tabs-wrapper {position:relative; display:flex; gap:14px;}
+.tab {background:none; border:none; color:white; font-size:16px; font-weight:600; cursor:pointer; padding:6px 10px; border-radius:10px; transition: color .25s ease, background .25s ease;}
+.tab:hover {background: rgba(255,255,255,0.1);}
+.tab.active {color:#4ade80;}
+.tab-underline {position:absolute; bottom:-2px; left:0; height:3px; width:0; background:#4ade80; border-radius:2px; transition: left .3s ease, width .3s ease;}
+
+/* Tooltip */
+.tooltip {position:fixed; padding:10px 16px; font-size:14px; font-weight:600; color:white; background: rgba(0,0,0,0.85); border-radius:14px; border:1px solid rgba(255,255,255,0.25); pointer-events:none; opacity:0; transform:scale(0.9); transition:opacity .15s ease, transform .15s ease; backdrop-filter:blur(6px); z-index:999;}
+.tooltip.show {opacity:1; transform:scale(1);}
+
+/* Stats Overlay */
+.stats-overlay {
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: rgba(0,0,0,0.6);
+  color:white;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .4s ease;
+  z-index:10;
+}
+.stats-overlay.show {opacity:1; pointer-events:auto;}
+
+/* Animations */
+@keyframes green-shine {from {background-position:0% 0%;} to{background-position:-300% 0%;}}
+@keyframes glow-pulse {0%{box-shadow:0 0 10px rgba(255,255,255,.6),0 0 18px rgba(255,255,255,.6);}50%{box-shadow:0 0 16px rgba(255,255,255,.9),0 0 28px rgba(255,255,255,.9);}100%{box-shadow:0 0 10px rgba(255,255,255,.6),0 0 18px rgba(255,255,255,.6);}}
